@@ -1,4 +1,5 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import CartWidget from '../cartWidget/CartWidget';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NavBar = () => {
@@ -7,7 +8,7 @@ const NavBar = () => {
     return (
         <Navbar bg="light" expand="lg">
         <Container>
-        <Navbar.Brand href="#home">Mi Tienda E-commerce</Navbar.Brand>
+        <Navbar.Brand href="#home">Altas Zapas</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
@@ -17,6 +18,7 @@ const NavBar = () => {
             </Nav.Link>
         ))}
         </Nav>
+        <CartWidget />
         </Navbar.Collapse>
         </Container>
         </Navbar>

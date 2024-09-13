@@ -1,19 +1,13 @@
-import { NavBar } from "./components/layouts/navbar/Navbar";
-import { ItemListContainer } from "./pages/itemListContainer/ItemListContainer";
-import { Main } from "./components/layouts/main/Main";
-import { Footer } from "./components/layouts/footer/Footer";
-
+import NavBar from './components/common/navbar/Navbar';
+import ItemListContainer from './pages/itemListContainer/ItemListContainer';
 
 function App() {
-  console.log('App component is rendering');
   return (
     <div className="App">
     <NavBar />
-    <ItemListContainer />
-    <Main />
-    <Footer />
+    <ItemListContainer greeting="¡Bienvenido a Altas Zapas!" />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
