@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import ItemList from '../../components/ItemList/ItemList';
 import { mockProducts } from '../../mocks/products';
 
 const ItemListContainer = ({ greeting }) => {
@@ -15,8 +15,8 @@ const ItemListContainer = ({ greeting }) => {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     const filteredProducts = categoryId
-                    ? mockProducts.filter(product => product.category === categoryId)
-                    : mockProducts;
+                        ? mockProducts.filter(product => product.category === categoryId)
+                        : mockProducts;
                     resolve(filteredProducts);
                 }, 1000);
             });
@@ -24,38 +24,27 @@ const ItemListContainer = ({ greeting }) => {
         
         setLoading(true);
         fetchProducts()
-        .then(response => {
-            setProducts(response);
-            setLoading(false);
-        });
+            .then(response => {
+                setProducts(response);
+                setLoading(false);
+            });
     }, [categoryId]);
     
     if (loading) {
-        return <Container className="mt-4"><h2>Cargando...</h2></Container>;
+        return (
+            <Container className="mt-4">
+                <div className="text-center">
+                    <h2>Cargando productos...</h2>
+                    {/* Aquí podrías agregar un spinner o skeleton */}
+                </div>
+            </Container>
+        );
     }
     
     return (
         <Container className="mt-4">
-        {greeting && <h2 className="mb-4">{greeting}</h2>}
-        <Row>
-        {products.map(product => (
-            <Col key={product.id} xs={12} sm={6} md={4} lg={3} className="mb-4">
-            <Card>
-            <Card.Img variant="top" src={product.image} />
-            <Card.Body>
-            <Card.Title>{product.name}</Card.Title>
-            <Card.Text>${product.price}</Card.Text>
-            <Link 
-            to={`/item/${product.id}`}
-            className="btn btn-primary"
-            >
-            Ver detalle
-            </Link>
-            </Card.Body>
-            </Card>
-            </Col>
-        ))}
-        </Row>
+            {greeting && <h2 className="mb-4">{greeting}</h2>}
+            <ItemList products={products} />
         </Container>
     );
 };
